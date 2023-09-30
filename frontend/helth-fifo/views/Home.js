@@ -28,6 +28,34 @@ export default function Home({ navigation }) {
         roomNumber: "3A",
         name: "Badanie wzroku"
     }]
+
+    function testFetch() {
+        fetch('http://localhost:5000/api/v1/Patient/Visit/ScanId',
+            {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    firstParam: 'yourValue',
+                    secondParam: 'yourOtherValue',
+                }
+                )
+            })
+            .then(response => response.json())
+            .then(json => {
+                return json.movies;
+            })
+            .catch(error => {
+                console.error('Error ', error);
+            })
+    }
+
+    useEffect(() => {
+        testFetch();
+    })
+
     return (
         <View style={GlobalStyles.container}>
             <TitleBar subtitle="Helth fifo" title="Twoje wizyty" hideBackBtn={true} />
