@@ -1,9 +1,8 @@
 import { StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-native'
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome'
 import { useNavigation } from '@react-navigation/native'
-import TurnTable from '../assets/scribble.variable.svg'
 
-export default function Header({title = '', hideBackBtn = false }) {
+export default function Header({ title = '', hideBackBtn = false }) {
 	const navigation = useNavigation()
 
 	return (
@@ -24,7 +23,6 @@ export default function Header({title = '', hideBackBtn = false }) {
 				</View>
 			)}
 			<View style={styles.textBox}>
-				<img style={styles.logo} src={TurnTable} alt='main logo' />
 				<View style={styles.mainTitle}>
 					<Text style={styles.mainTitleText}>{title}</Text>
 				</View>
@@ -35,12 +33,12 @@ export default function Header({title = '', hideBackBtn = false }) {
 
 const styles = StyleSheet.create({
 	titleTab: {
-      position: 'relative',
+		position: 'relative',
 		marginTop: 60,
 		marginBottom: 10,
 		display: 'flex',
 		flexDirection: 'row',
-		
+
 	},
 	iconBox: {
 		display: 'flex',
@@ -54,10 +52,10 @@ const styles = StyleSheet.create({
 	logo: {
 		marginRight: 10,
 	},
-   backBtn: {
-      position: 'absolute',
-      left: -110,
-   },
+	backBtn: {
+		position: 'absolute',
+		left: -110,
+	},
 
 	mainTitleText: {
 		fontSize: 14,

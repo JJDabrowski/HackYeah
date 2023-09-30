@@ -17,47 +17,23 @@ export default function Home({ navigation }) {
     SplashScreen.hideAsync();
 
     const visits = [{
-        id: 321,
+        id: "AZ321",
         roomNumber: "18A",
         name: "Badanie pola widzenia"
     },
     {
-        id: 322,
+        id: "AZ322",
         roomNumber: "3B",
         name: "Badanie cisnienia galki ocznej"
     },
     {
-        id: 323,
+        id: "AZ323",
         roomNumber: "3A",
         name: "Badanie wzroku"
     }]
 
-    function testFetch() {
-        fetch('http://localhost:5000/api/v1/Patient/Visit/ScanId',
-            {
-                method: 'POST',
-                headers: {
-                    Accept: 'application/json',
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    // firstParam: 'yourValue',
-                    // secondParam: 'yourOtherValue',
-                }
-                )
-            })
-            .then(response => response)
-            .then(json => {
-                console.log(json)
-                return json;
-            })
-            .catch(error => {
-                console.error('Error ', error);
-            })
-    }
-
     useEffect(() => {
-        testFetch();
+        // testFetch();
     })
 
     return (

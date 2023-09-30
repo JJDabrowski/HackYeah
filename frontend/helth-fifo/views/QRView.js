@@ -64,6 +64,35 @@ export default function QRView({ navigation }) {
             </View>
         );
     }
+
+    function testFetch() {
+        // data
+        console.log("fetch")
+        const url = 'https://2ef2-213-25-77-242.ngrok-free.app/api/v1/Patient/Visit/ScanId'
+        fetch(url,
+            {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    // firstParam: 'yourValue',
+                    // secondParam: 'yourOtherValue',
+                }
+                )
+            })
+            .then(response => response.json())
+            .then(json => {
+                console.log("Response:")
+                console.log(JSON.stringify(json))
+                return json;
+            })
+            .catch(error => {
+                console.error('Error ', error);
+            })
+    }
+
     SplashScreen.hideAsync();
 
     return (
