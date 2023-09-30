@@ -24,6 +24,8 @@ def scan_id():
 
     queue = utils.generate_queue()
 
+    name = utils.generate_name()
+
     #create final response
     response = {"data":
                     {
@@ -38,7 +40,8 @@ def scan_id():
     utils.queues_dict["data"].append({
         "number": number,
         "room": room,
-        "queue": queue
+        "queue": queue,
+        "name": name
     })
 
     with open(utils.QUEUES_PATH, 'w') as j_file:
@@ -81,6 +84,12 @@ def postpone_the_visit():
         return jsonify({"cloudResponse": "Success. Queue postponed"})
 
     return jsonify({"cloudResponse": "Failure. No queue to postpone"})
+
+
+@app.get("/api/v1/Patient/Visit/GetDetails")
+def get_all_visits_details():
+
+    return jsonify(utils.queues_dict)
 
 
 @app.get("/api/v1/Patient/Visit/GetCurrentQueue")

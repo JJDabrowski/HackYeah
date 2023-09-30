@@ -1,24 +1,22 @@
-import { StyleSheet, Styles, Text, View, ScrollView, TouchableOpacity } from 'react-native';
-import * as SplashScreen from 'expo-splash-screen';
-import TitleBar from '../components/TitleBar';
-import ActionButton from '../components/ActionButton';
+import { StyleSheet, Styles, Text, View, ScrollView, TouchableOpacity } from 'react-native'
+import * as SplashScreen from 'expo-splash-screen'
+import TitleBar from '../components/TitleBar'
+import ActionButton from '../components/ActionButton'
 import GlobalStyles from '../Styles'
-import React, { useState, useEffect, useCallback } from 'react';
-import { BarCodeScanner } from 'expo-barcode-scanner';
-import { Camera } from 'expo-camera';
+import React, { useState, useEffect } from 'react'
+import { BarCodeScanner } from 'expo-barcode-scanner'
+import { Camera } from 'expo-camera'
 import PathBar from '../components/PathBar'
-import PrimaryButton from '../components/PrimaryButton';
-import Header from '../components/Header';
-import Storage from '../Storage'
-// import { useFonts } from 'expo-font';
+import PrimaryButton from '../components/PrimaryButton'
+import Header from '../components/Header'
+import VisitCard from '../components/VisitCard'
 
-SplashScreen.preventAutoHideAsync();
+SplashScreen.preventAutoHideAsync()
 
 export default function Home({ navigation }) {
     const [isLoaded] = useState(true);
 
-
-    SplashScreen.hideAsync();
+    SplashScreen.hideAsync()
 
     let visits = [{
         id: "AZ321",
@@ -53,6 +51,7 @@ export default function Home({ navigation }) {
         loadVisits();
     }, [isLoaded]);
 
+
     return (
         <View style={GlobalStyles.container}>
             <Header title="Twoje wizyty" hideBackBtn={true} />
@@ -85,9 +84,9 @@ export default function Home({ navigation }) {
 const styles = StyleSheet.create({
     visitElement: {
         marginHorizontal: 20,
-        borderBottomColor: "#E4E4E4",
+        borderBottomColor: '#E4E4E4',
         borderBottomWidth: 4,
-        paddingVertical: 6
+        paddingVertical: 6,
     },
     midText: {
         fontSize: 20,
