@@ -10,6 +10,8 @@ import PathBar from '../components/PathBar'
 import PrimaryButton from '../components/PrimaryButton'
 import Header from '../components/Header'
 import VisitCard from '../components/VisitCard'
+import Client from '../Client'
+// import Storage from '../Storage'
 
 SplashScreen.preventAutoHideAsync()
 
@@ -35,8 +37,8 @@ export default function Home({ navigation }) {
     }]
 
     const loadVisits = useCallback(async () => {
-        await Storage.reset()
-        const visits = await Storage.getVisits()
+        // await Storage.reset()
+        // const visits = await Storage.getVisits()
         console.log("loadVisits")
         // setWorkouts(visits)
         // if (isLoaded) {
@@ -45,10 +47,13 @@ export default function Home({ navigation }) {
     });
 
     useEffect(() => {
-        navigation.addListener('focus', () => {
-            loadVisits();
+        navigation.addListener('focus', async () => {
+            console.log("Fetch visits from apii")
+            let result = await Client.getDetails();
+            console.log(result)
+            // loadVisits();
         });
-        loadVisits();
+        // loadVisits();
     }, [isLoaded]);
 
 
