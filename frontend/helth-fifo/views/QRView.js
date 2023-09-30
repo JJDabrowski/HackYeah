@@ -68,7 +68,7 @@ export default function QRView({ navigation }) {
 
     return (
         <View style={GlobalStyles.container}>
-            <TitleBar subtitle="QR skaner" title="Dodaj kolejke" hideBackBtn={true} />
+            <TitleBar subtitle="QR skaner" title="Dodaj kolejke" />
             <View style={styles.container}>
                 {renderCamera()}
             </View>
