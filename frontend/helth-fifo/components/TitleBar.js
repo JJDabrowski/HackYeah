@@ -29,7 +29,6 @@ export default function TitleBar({ subtitle = "", title = "", hideBackBtn = fals
     )
 }
 
-
 const styles = StyleSheet.create({
     titleTab: {
         marginTop: 60,
