@@ -3,7 +3,7 @@ import * as SplashScreen from 'expo-splash-screen'
 import TitleBar from '../components/TitleBar'
 import ActionButton from '../components/ActionButton'
 import GlobalStyles from '../Styles'
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { BarCodeScanner } from 'expo-barcode-scanner'
 import { Camera } from 'expo-camera'
 import PathBar from '../components/PathBar'
@@ -61,16 +61,19 @@ export default function Home({ navigation }) {
             </View> : null}
             <ScrollView >
                 {visits.map(visit => (
+
                     <TouchableOpacity key={visit.id} style={styles.visitElement} onPress={() => {
 
                         navigation.navigate('VisitView', {
                             visit: visit
                         });
                     }}>
-                        <Text style={styles.midText}>{visit.id}: {visit.name},{visit.roomNumber}</Text>
+                        <VisitCard style={styles.midText}></VisitCard>
+                        {/* <Text style={styles.midText}>{visit.id}: {visit.name},{visit.roomNumber}</Text> */}
                     </TouchableOpacity>
                 ))}
             </ScrollView>
+
             <View style={GlobalStyles.bottomBar}>
                 <ActionButton text="Skanuj kod wizyty" callback={() => {
                     // Dodaj wizyte pewnie lepiej

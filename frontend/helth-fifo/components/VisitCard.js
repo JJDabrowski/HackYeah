@@ -3,19 +3,19 @@ import { View, TouchableOpacity, Text, StyleSheet } from 'react-native'
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome'
 
 const styles = StyleSheet.create({
-   visit__container: {
-      display: 'flex',
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      width: 350,
-      padding: 10,
-   },
+	visit__container: {
+		display: 'flex',
+		flexDirection: 'row',
+		justifyContent: 'space-between',
+		alignItems: 'center',
+		width: 350,
+		padding: 10,
+	},
 
-   title: {
-      fontSize: 20,
-      fontWeight: 'bold',
-   }
+	title: {
+		fontSize: 20,
+		fontWeight: 'bold',
+	}
 })
 
 const VisitCard = ({ id = 'AZ321', roomNumber = 'Pojój 18A', name = 'Badaniee Pola widzenia', queueNumber = '1' }) => {
