@@ -9,7 +9,7 @@ from backend import utils
 app = Flask(__name__)
 CORS(app)
 
-
+#PATIENT ENDPOINTS
 @app.post("/api/v1/Patient/Visit/ScanId")
 def scan_id():
 
@@ -93,3 +93,30 @@ def get_current_queue():
     response = {"data": {"queue": place_in_line}}
 
     return response
+
+
+#DOCTOR ENDPOINTS
+@app.post("/api/v1/Doctor/VisitFinished")
+def visit_finished():
+
+    room = request.args.get("room")
+
+    if len(utils.queues_dict["data"]) < 2:
+        utils.queues_dict["data"].clear()
+
+        with open(utils.QUEUES_PATH, 'w') as json_file:
+            json.dump(utils.queues_dict, json_file)
+
+        return {"cloudStatus": "The patient was removed from all the queues"}
+    else:
+        for p_no, patient in enumerate(utils.queues_dict["data"]):
+            if patient["room"] == int(room):
+                utils.queues_dict["data"][p_no]["queue"] += 1
+
+                with open(utils.QUEUES_PATH, 'w') as json_file:
+                    json.dump(utils.queues_dict, json_file)
+
+                return {"cloudStatus": "The patient was moved in the queue"}
+
+    return {"cloudStatus": "fatal error"}
+
