@@ -34,9 +34,21 @@ export default function Home({ navigation }) {
 		},
 	]
 
-	useEffect(() => {
-		// testFetch();
-	})
+    let visits = [{
+        id: "AZ321",
+        roomNumber: "18A",
+        name: "Badanie pola widzenia"
+    },
+    {
+        id: "AZ322",
+        roomNumber: "3B",
+        name: "Badanie cisnienia galki ocznej"
+    },
+    {
+        id: "AZ323",
+        roomNumber: "3A",
+        name: "Badanie wzroku"
+    }]
 
 	return (
 		<View style={GlobalStyles.container}>
@@ -57,14 +69,33 @@ export default function Home({ navigation }) {
 				))}
 			</ScrollView>
 
-			<PrimaryButton
-				text='Skanuj kod wizyty'
-				callback={() => {
-					// Dodaj wizyte pewnie lepiej
-					navigation.navigate('QRView')
-				}}></PrimaryButton>
-		</View>
-	)
+    return (
+        <View style={GlobalStyles.container}>
+            <Header title="Twoje wizyty" hideBackBtn={true} />
+            <PathBar></PathBar>
+            {visits.length < 1 ? <View>
+                <Text> Brak wizyt, zeskanuj kod QR</Text>
+            </View> : null}
+            <ScrollView >
+                {visits.map(visit => (
+                    <TouchableOpacity key={visit.id} style={styles.visitElement} onPress={() => {
+
+                        navigation.navigate('VisitView', {
+                            visit: visit
+                        });
+                    }}>
+                        <Text style={styles.midText}>{visit.id}: {visit.name},{visit.roomNumber}</Text>
+                    </TouchableOpacity>
+                ))}
+            </ScrollView>
+            <View style={GlobalStyles.bottomBar}>
+                <ActionButton text="Skanuj kod wizyty" callback={() => {
+                    // Dodaj wizyte pewnie lepiej
+                    navigation.navigate('QRView')
+                }}></ActionButton>
+            </View>
+        </View >
+    );
 }
 
 const styles = StyleSheet.create({

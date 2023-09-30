@@ -1,10 +1,11 @@
 const GlobalStyles = {
     container: {
         flex: 1,
-        backgroundColor: '#fff', 
+        backgroundColor: '#fff',
         flexDirection: 'column',
         fontFamily: 'poppins-mid',
-        alignItems: "center"
+        alignItems: "center",
+        justifyContent: "space-between"
     },
     bottomBar: {
         display: "flex",

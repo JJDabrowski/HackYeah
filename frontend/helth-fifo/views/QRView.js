@@ -27,7 +27,8 @@ export default function QRView({ navigation }) {
             {
                 text: 'Dodaj',
                 onPress: () => {
-                    console.log(`Dodajemy ${data}`)
+                    content = JSON.parse(data)
+                    console.log(`Dodajemy ${content.message}`)
                     setScanned(false)
                 },
                 style: 'cancel',
