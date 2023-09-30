@@ -11,6 +11,16 @@ def generate_room_number():
 def generate_queue():
     return randint(2,15)
 
+examination_list = ["gałki ocznej", "przełyku", "drożności tchawicy", "czwartej komory mózgu", "przedsionka serca", "znamion na skórze", "stanu kości", "ruchomości stawów"]
+
+def generate_name():
+    name = "Badanie "
+    randomized_name_no = randint(0, len(examination_list)-1)
+    name = name + examination_list[randomized_name_no]
+    del examination_list[randomized_name_no]
+
+    return name
+
 
 ROOT = os.path.realpath(os.path.dirname(__file__))
 
