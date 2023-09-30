@@ -6,6 +6,8 @@ import GlobalStyles from '../Styles'
 import React, { useState, useEffect } from 'react';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import { Camera } from 'expo-camera';
+import PrimaryButton from '../components/PrimaryButton';
+import Header from '../components/Header';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -30,7 +32,7 @@ export default function Home({ navigation }) {
     }]
     return (
         <View style={GlobalStyles.container}>
-            <TitleBar subtitle="Helth fifo" title="Twoje wizyty" hideBackBtn={true} />
+            <Header title="Twoje wizyty" hideBackBtn={true} />
             <ScrollView >
                 {visits.map(visit => (
                     <TouchableOpacity key={visit.id} style={styles.visitElement} onPress={() => {
@@ -43,10 +45,10 @@ export default function Home({ navigation }) {
                     </TouchableOpacity>
                 ))}
             </ScrollView>
-            <ActionButton text="Skanuj kod wizyty" callback={() => {
+            <PrimaryButton text="Skanuj kod wizyty" callback={() => {
                 // Dodaj wizyte pewnie lepiej
                 navigation.navigate('QRView')
-            }}></ActionButton>
+            }}></PrimaryButton>
         </View >
     );
 }

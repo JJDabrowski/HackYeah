@@ -3,7 +3,7 @@ const GlobalStyles = {
         flex: 1,
         backgroundColor: '#fff', 
         flexDirection: 'column',
-        fontFamily: 'mrt-mid',
+        fontFamily: 'poppins-mid',
         alignItems: "center"
     },
     bottomBar: {
