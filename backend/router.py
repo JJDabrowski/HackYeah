@@ -2,47 +2,46 @@ import json, os, time
 
 from flask import Flask, request, jsonify
 
-from backend import support_funcs
+from backend import utils
 
 app = Flask(__name__)
 
 
-ROOT = os.path.realpath(os.path.dirname(__file__))
-
 @app.post("/api/v1/Patient/Visit/ScanId")
 def scan_id():
 
-    NUMBER_PATH = os.path.join(ROOT, "database", "currentNumber.json")
-    QUEUES_PATH = os.path.join(ROOT, "database", "queues.json")
+    NUMBER_PATH = os.path.join(utils.ROOT, "database", "currentNumber.json")
 
     #change number dict
     number_dict = json.load(open(NUMBER_PATH))
 
     number = number_dict["data"]["currentNumber"]
 
-    room = support_funcs.generate_room_number()
+    room = utils.generate_room_number()
 
-    queue = support_funcs.generate_queue()
+    queue = utils.generate_queue()
 
     #create final response
-    response = {"currentNumber": number,
-                "room": room,
-                "queue": queue,
-                "timestamp": time.time()}
+    response = {"data":
+                    {
+                        "currentNumber": number,
+                        "room": room,
+                        "queue": queue,
+                        "timestamp": time.time()
+                    }
+                }
 
     #add record to queues
-    queues_dict = json.load(open(QUEUES_PATH))
-
-    queues_dict["data"].append({
+    utils.queues_dict["data"].append({
         "number": number,
         "room": room,
         "queue": queue
     })
 
-    with open(QUEUES_PATH, 'w') as j_file:
-        json.dump(queues_dict, j_file)
+    with open(utils.QUEUES_PATH, 'w') as j_file:
+        json.dump(utils.queues_dict, j_file)
 
-    new_number = number + support_funcs.add_place_in_queue()
+    new_number = number + utils.add_place_in_queue()
 
     number_dict["data"] = {"currentNumber": new_number}
 
@@ -51,3 +50,18 @@ def scan_id():
 
 
     return jsonify(response)
+
+
+@app.get("/api/v1/Patient/Visit/GetCurrentQueue")
+def get_current_queue():
+
+    queue_for_number = request.args.get('number')
+
+    place_in_line = None
+
+    for queue in utils.queues_dict["data"]:
+        if queue["number"] == int(queue_for_number):
+            place_in_line = queue["queue"]
+            break
+
+    return {"data": {"queue": place_in_line}}

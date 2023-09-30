@@ -4,3 +4,5 @@ Create venv in main or backend folder and run it (tutorial: https://docs.python.
 # Running router locally
 To run router locally, you need to navigate to the folder (hackyeah/backend) and then run bash script (you can find it in backend/database) or just:
 flask --app router run
+
+# GetCurrentQueue can return empty list
