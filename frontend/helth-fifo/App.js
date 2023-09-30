@@ -12,6 +12,9 @@ export default function App() {
 		'mrt-mid': require('./assets/fonts/Montserrat/static/Montserrat-Medium.ttf'),
 		'mrt-bold': require('./assets/fonts/Montserrat/static/Montserrat-Bold.ttf'),
 		'mrt-xbold': require('./assets/fonts/Montserrat/static/Montserrat-ExtraBold.ttf'),
+		'poppins-mid': require('./assets/fonts/Poppins/Poppins-Regular.ttf'),
+		'poppins-bold': require('./assets/fonts/Poppins/Poppins-Bold.ttf'),
+		'poppins-xbold': require('./assets/fonts/Poppins/Poppins-ExtraBold.ttf'),
 	})
 
 	if (!isLoaded) {
