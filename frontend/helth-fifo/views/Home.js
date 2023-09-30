@@ -31,7 +31,6 @@ export default function Home({ navigation }) {
         roomNumber: "3A",
         name: "Badanie wzroku"
     }]
-    visits = []
 
     useEffect(() => {
         // testFetch();
@@ -43,7 +42,7 @@ export default function Home({ navigation }) {
             <PathBar></PathBar>
             {visits.length < 1 ? <View>
                 <Text> Brak wizyt, zeskanuj kod QR</Text>
-            </View> : None}
+            </View> : null}
             <ScrollView >
                 {visits.map(visit => (
                     <TouchableOpacity key={visit.id} style={styles.visitElement} onPress={() => {
