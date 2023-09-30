@@ -1,6 +1,8 @@
 import { StyleSheet, Styles, Text, View, ScrollView, TouchableOpacity } from 'react-native';
 import * as SplashScreen from 'expo-splash-screen';
 import TitleBar from '../components/TitleBar';
+import ActionButton from '../components/ActionButton';
+import GlobalStyles from '../Styles'
 
 SplashScreen.preventAutoHideAsync();
 
@@ -22,11 +24,11 @@ export default function Home({ navigation }) {
         name: "Badanie wzroku"
     }]
     return (
-        <View>
+        <View style={GlobalStyles.container}>
             <TitleBar subtitle="Helth fifo" title="Twoje wizyty" hideBackBtn={true} />
             <ScrollView >
                 {visits.map(visit => (
-                    <TouchableOpacity style={styles.visitElement} onPress={() => {
+                    <TouchableOpacity key={visit.id} style={styles.visitElement} onPress={() => {
                         // Go to visit view
                         // navigation.navigate('visitView', {
                         //     visit: visit
@@ -36,10 +38,13 @@ export default function Home({ navigation }) {
                     </TouchableOpacity>
                 ))}
             </ScrollView>
+            <ActionButton text="Skanuj kod wizyty" callback={() => {
+                // Dodaj wizyte pewnie lepiej
+                // navigation.navigate('CreateWorkout')
+            }}></ActionButton>
         </View >
     );
 }
-
 
 const styles = StyleSheet.create({
     visitElement: {
