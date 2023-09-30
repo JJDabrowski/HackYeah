@@ -6,6 +6,7 @@ import GlobalStyles from '../Styles'
 import React, { useState, useEffect } from 'react';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import { Camera } from 'expo-camera';
+import PathBar from '../components/PathBar'
 
 SplashScreen.preventAutoHideAsync();
 
@@ -38,14 +39,15 @@ export default function Home({ navigation }) {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    firstParam: 'yourValue',
-                    secondParam: 'yourOtherValue',
+                    // firstParam: 'yourValue',
+                    // secondParam: 'yourOtherValue',
                 }
                 )
             })
-            .then(response => response.json())
+            .then(response => response)
             .then(json => {
-                return json.movies;
+                console.log(json)
+                return json;
             })
             .catch(error => {
                 console.error('Error ', error);
@@ -59,6 +61,7 @@ export default function Home({ navigation }) {
     return (
         <View style={GlobalStyles.container}>
             <TitleBar subtitle="Helth fifo" title="Twoje wizyty" hideBackBtn={true} />
+            <PathBar></PathBar>
             <ScrollView >
                 {visits.map(visit => (
                     <TouchableOpacity key={visit.id} style={styles.visitElement} onPress={() => {
