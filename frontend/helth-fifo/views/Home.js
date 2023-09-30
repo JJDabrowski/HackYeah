@@ -10,45 +10,8 @@ import { Camera } from 'expo-camera';
 SplashScreen.preventAutoHideAsync();
 
 export default function Home({ navigation }) {
-    const [hasPermission, setHasPermission] = useState(null);
-    const [scanned, setScanned] = useState(false);
 
-    useEffect(() => {
-        (async () => {
-            const { status } = await BarCodeScanner.requestPermissionsAsync();
-            setHasPermission(status === 'granted');
-        })();
-    }, []);
-
-    const handleBarCodeScanned = ({ type, data }) => {
-        setScanned(true);
-        alert(`Bar code with type ${type} and data ${data} has been scanned!`);
-    };
-
-    const renderCamera = () => {
-        return (
-            <View style={styles.cameraContainer}>
-                <BarCodeScanner
-                    onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
-                    style={styles.camera}
-                />
-            </View>
-        );
-    };
-
-    if (hasPermission === null) {
-        return <View />;
-    }
-
-    if (hasPermission === false) {
-        return (
-            <View style={styles.container}>
-                <Text style={styles.text}>Camera permission not granted</Text>
-            </View>
-        );
-    }
     SplashScreen.hideAsync();
-
 
     const visits = [{
         id: 321,
@@ -80,21 +43,9 @@ export default function Home({ navigation }) {
                     </TouchableOpacity>
                 ))}
             </ScrollView>
-            <View style={styles.container}>
-                <Text style={styles.title}>Welcome to the Barcode Scanner App!</Text>
-                <Text style={styles.paragraph}>Scan a barcode to start your job.</Text>
-                {renderCamera()}
-                <TouchableOpacity
-                    style={styles.button}
-                    onPress={() => setScanned(false)}
-                    disabled={scanned}
-                >
-                    <Text style={styles.buttonText}>Scan QR to Start your job</Text>
-                </TouchableOpacity>
-            </View>
             <ActionButton text="Skanuj kod wizyty" callback={() => {
                 // Dodaj wizyte pewnie lepiej
-                // navigation.navigate('CreateWorkout')
+                navigation.navigate('QRView')
             }}></ActionButton>
         </View >
     );
@@ -141,5 +92,4 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: 'bold',
     },
-
 });

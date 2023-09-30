@@ -1,11 +1,11 @@
 import React from 'react'
 import TitleBar from '../components/TitleBar'
 
-const VisitView = ({route, navigation}) => {
-   const {visit} = route.params
+const VisitView = ({ route, navigation }) => {
+  const { visit } = route.params
 
   return (
-    <TitleBar subtitle={visit.name} title="Twoje sdf" hideBackBtn={true}/>
+    <TitleBar subtitle={visit.name} title="Twoje sdf" />
   )
 }
 
