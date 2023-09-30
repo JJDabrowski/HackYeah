@@ -2,9 +2,12 @@ import json, os, time
 
 from flask import Flask, request, jsonify
 
+from flask_cors import CORS
+
 from backend import utils
 
 app = Flask(__name__)
+CORS(app)
 
 
 @app.post("/api/v1/Patient/Visit/ScanId")

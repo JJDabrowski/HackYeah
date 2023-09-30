@@ -45,8 +45,15 @@ source bin/activate
 
 pip install Flask
 
+## Step: 4.1. Install Flask CORS
+
+$ pip install -U flask-cors
+
 
 # DEV DOCUMENATION
 
 # GetCurrentQueue
 * takes get parameter - the number of the queue as number; it returns null when no records or wrong get parameter - please handle on front
+
+# Running app locally
+npx expo start --web
