@@ -16,7 +16,7 @@ export default function Home({ navigation }) {
 
     SplashScreen.hideAsync();
 
-    const visits = [{
+    let visits = [{
         id: "AZ321",
         roomNumber: "18A",
         name: "Badanie pola widzenia"
@@ -31,6 +31,7 @@ export default function Home({ navigation }) {
         roomNumber: "3A",
         name: "Badanie wzroku"
     }]
+    visits = []
 
     useEffect(() => {
         // testFetch();
@@ -40,6 +41,9 @@ export default function Home({ navigation }) {
         <View style={GlobalStyles.container}>
             <Header title="Twoje wizyty" hideBackBtn={true} />
             <PathBar></PathBar>
+            {visits.length < 1 ? <View>
+                <Text> Brak wizyt, zeskanuj kod QR</Text>
+            </View> : None}
             <ScrollView >
                 {visits.map(visit => (
                     <TouchableOpacity key={visit.id} style={styles.visitElement} onPress={() => {
