@@ -3,7 +3,7 @@ import { View, TouchableOpacity, Text, StyleSheet } from 'react-native'
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome'
 
 const styles = StyleSheet.create({
-	visit__container: {
+	visitContainer: {
 		display: 'flex',
 		flexDirection: 'row',
 		justifyContent: 'space-between',
@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
 
 const VisitCard = ({ id = 'AZ321', roomNumber = 'Pojój 18A', name = 'Badaniee Pola widzenia', queueNumber = '1' }) => {
 	return (
-		<View style={styles.visit__container}>
+		<View style={styles.visitContainer}>
 			<View>
 				<Text >{id}</Text>
 				<Text>{queueNumber} w kolejce</Text>

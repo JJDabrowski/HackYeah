@@ -68,17 +68,17 @@ export default function Home({ navigation }) {
                             visit: visit
                         });
                     }}>
-                        <VisitCard style={styles.midText}></VisitCard>
+                        <VisitCard></VisitCard>
                         {/* <Text style={styles.midText}>{visit.id}: {visit.name},{visit.roomNumber}</Text> */}
                     </TouchableOpacity>
                 ))}
             </ScrollView>
 
             <View style={GlobalStyles.bottomBar}>
-                <ActionButton text="Skanuj kod wizyty" callback={() => {
+                <PrimaryButton text="Skanuj kod wizyty" callback={() => {
                     // Dodaj wizyte pewnie lepiej
                     navigation.navigate('QRView')
-                }}></ActionButton>
+                }}></PrimaryButton>
             </View>
         </View >
     );
