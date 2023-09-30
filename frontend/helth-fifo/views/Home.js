@@ -3,16 +3,20 @@ import * as SplashScreen from 'expo-splash-screen';
 import TitleBar from '../components/TitleBar';
 import ActionButton from '../components/ActionButton';
 import GlobalStyles from '../Styles'
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import { Camera } from 'expo-camera';
 import PathBar from '../components/PathBar'
 import PrimaryButton from '../components/PrimaryButton';
 import Header from '../components/Header';
+import Storage from '../Storage'
+// import { useFonts } from 'expo-font';
 
 SplashScreen.preventAutoHideAsync();
 
 export default function Home({ navigation }) {
+    const [isLoaded] = useState(true);
+
 
     SplashScreen.hideAsync();
 
@@ -32,9 +36,22 @@ export default function Home({ navigation }) {
         name: "Badanie wzroku"
     }]
 
+    const loadVisits = useCallback(async () => {
+        await Storage.reset()
+        const visits = await Storage.getVisits()
+        console.log("loadVisits")
+        // setWorkouts(visits)
+        // if (isLoaded) {
+        //     await SplashScreen.hideAsync();
+        // }
+    });
+
     useEffect(() => {
-        // testFetch();
-    })
+        navigation.addListener('focus', () => {
+            loadVisits();
+        });
+        loadVisits();
+    }, [isLoaded]);
 
     return (
         <View style={GlobalStyles.container}>
