@@ -56,7 +56,31 @@ def scan_id():
 
 @app.post("/api/v1/Patient/Visit/Postpone")
 def postpone_the_visit():
-    return ""
+
+    queue_for_number = request.args.get('number')
+
+    places_count = request.args.get('places')
+
+    dict_number = None
+    place_in_line = None
+
+
+    for p_number, patient in enumerate(utils.queues_dict["data"]):
+        if patient["number"] == int(queue_for_number):
+            dict_number = p_number
+            place_in_line = patient["queue"]
+
+    if dict_number is not None:
+        new_place = place_in_line + int(places_count)
+
+        utils.queues_dict["data"][dict_number]["queue"] = new_place
+
+        with open(utils.QUEUES_PATH, 'w') as json_file:
+            json.dump(utils.queues_dict, json_file)
+
+        return jsonify({"cloudResponse": "Success. Queue postponed"})
+
+    return jsonify({"cloudResponse": "Failure. No queue to postpone"})
 
 
 @app.get("/api/v1/Patient/Visit/GetCurrentQueue")
@@ -64,13 +88,7 @@ def get_current_queue():
 
     queue_for_number = request.args.get('number')
 
-    place_in_line = None
-
-    for queue in utils.queues_dict["data"]:
-        if queue["number"] == int(queue_for_number):
-            place_in_line = queue["queue"]
-            break
-
+    place_in_line = utils.get_place_in_line(queue_for_number)
 
     response = {"data": {"queue": place_in_line}}
 

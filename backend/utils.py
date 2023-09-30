@@ -17,5 +17,10 @@ ROOT = os.path.realpath(os.path.dirname(__file__))
 QUEUES_PATH = os.path.join(ROOT, "database", "queues.json")
 queues_dict = json.load(open(QUEUES_PATH))
 
-def find_queue_for_number(queue_for_number):
-    return ""
+
+def get_place_in_line(queue_for_number):
+    for patient in queues_dict["data"]:
+        if patient["number"] == int(queue_for_number):
+            return patient["queue"]
+
+    return None

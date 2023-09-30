@@ -49,11 +49,18 @@ pip install Flask
 
 $ pip install -U flask-cors
 
+# Running mobile app locally
+npx expo start --web
 
-# DEV DOCUMENATION
+
+### DEV DOCUMENATION ###
 
 # GetCurrentQueue
 * takes get parameter - the number of the queue as number; it returns null when no records or wrong get parameter - please handle on front
 
-# Running app locally
-npx expo start --web
+# Postpone
+* takes 2 get parameters: number of the queue as number and places the patient wants to skip as places;
+* returns either "Success. Queue Postponed" or "Failure. No queue to postpone"
+
+
+
