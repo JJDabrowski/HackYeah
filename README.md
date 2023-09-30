@@ -4,16 +4,19 @@ Create venv in main or backend folder and run it (tutorial: https://docs.python.
 # Running router locally
 To run router locally, you need to navigate to the folder (hackyeah/backend) and then run bash script (you can find it in backend/database) or just:
 flask --app router run
+from the terminal
 
 # Install Flask
 ## Step 1: Install Virtual Environment
 ### Install virtualenv on MacOS
 
-sudo python2 -m pip install virtualenv
+python -m pip install virtalenv
+OR
+python3 -m pip install virtualenv
 
 ### Install virtualenv on Windows
 
-py -2 -m pip install virtualenv
+py -3 -m pip install virtualenv
 
 ## Step 2: Create an Environment
 
@@ -23,16 +26,17 @@ cd `project name`
 
 ### Create an Environment in Linux and MacOS
 
-python3 -m venv `name of environment`
+python3 -m venv `environment_name`
 
 ### Create an Environment in Windows
 
-py -3 -m venv `name of environment`
+py -3 -m venv `environment_name`
 
 
 ## Step 3: Activate the Environment
 ### Activate the Environment on Linux and MacOs
-. `name of environment`/bin/activate
+navigate to the directory you put your environment int, and from the folder run:
+source bin/activate
 
 ### Activate the Environment on Windows
 `name of environment`\Scripts\activate
@@ -42,4 +46,7 @@ py -3 -m venv `name of environment`
 pip install Flask
 
 
-# GetCurrentQueue takes get parameter - the number of the queue as number; it returns null when no records or wrong get parameter - please handle on front
+# DEV DOCUMENATION
+
+# GetCurrentQueue
+* takes get parameter - the number of the queue as number; it returns null when no records or wrong get parameter - please handle on front

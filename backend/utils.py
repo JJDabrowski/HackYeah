@@ -16,3 +16,6 @@ ROOT = os.path.realpath(os.path.dirname(__file__))
 
 QUEUES_PATH = os.path.join(ROOT, "database", "queues.json")
 queues_dict = json.load(open(QUEUES_PATH))
+
+def find_queue_for_number(queue_for_number):
+    return ""

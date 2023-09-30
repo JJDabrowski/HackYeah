@@ -48,8 +48,12 @@ def scan_id():
     with open(NUMBER_PATH, 'w') as json_file:
         json.dump(number_dict, json_file)
 
-
     return jsonify(response)
+
+
+@app.post("/api/v1/Patient/Visit/Postpone")
+def postpone_the_visit():
+    return ""
 
 
 @app.get("/api/v1/Patient/Visit/GetCurrentQueue")
@@ -64,4 +68,7 @@ def get_current_queue():
             place_in_line = queue["queue"]
             break
 
-    return {"data": {"queue": place_in_line}}
+
+    response = {"data": {"queue": place_in_line}}
+
+    return response
