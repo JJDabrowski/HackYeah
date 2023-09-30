@@ -4,6 +4,7 @@ import Home from './views/Home'
 import { useFonts } from 'expo-font'
 import VisitView from './views/VisitView'
 import QRView from './views/QRView'
+import PostponeView from './views/PostponeView'
 
 const Stack = createNativeStackNavigator()
 
@@ -30,6 +31,7 @@ export default function App() {
 				<Stack.Screen name='Home' component={Home} />
 				<Stack.Screen name='VisitView' component={VisitView} />
 				<Stack.Screen name='QRView' component={QRView} />
+				<Stack.Screen name='PostponeView' component={PostponeView} />
 			</Stack.Navigator>
 		</NavigationContainer>
 	)

@@ -52,10 +52,12 @@ export default function Home({ navigation }) {
                     </TouchableOpacity>
                 ))}
             </ScrollView>
-            <PrimaryButton text="Skanuj kod wizyty" callback={() => {
-                // Dodaj wizyte pewnie lepiej
-                navigation.navigate('QRView')
-            }}></PrimaryButton>
+            <View style={GlobalStyles.bottomBar}>
+                <ActionButton text="Skanuj kod wizyty" callback={() => {
+                    // Dodaj wizyte pewnie lepiej
+                    navigation.navigate('QRView')
+                }}></ActionButton>
+            </View>
         </View >
     );
 }
