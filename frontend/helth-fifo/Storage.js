@@ -11,23 +11,23 @@ Storage.reset = async () => {
     }
 };
 
-// Storage.saveWorkout = async (workout) => {
-//     try {
-//         console.log('Saving workout in workouts storage');
-//         const workouts = await Storage.getWorkouts()
+Storage.setVisits = async (visits) => {
+    try {
+        console.log('Saving visits');
+        // const visits = await Storage.getVisits()
 
-//         for (let i = 0; i < workouts.length; i++) {
-//             if (workouts[i].name === workout.name) {
-//                 workouts[i] = workout
-//                 break;
-//             }
-//         }
+        // for (let i = 0; i < workouts.length; i++) {
+        //     if (workouts[i].name === workout.name) {
+        //         workouts[i] = workout
+        //         break;
+        //     }
+        // }
 
-//         await AsyncStorage.setItem('workouts', JSON.stringify(workouts));
-//     } catch (error) {
-//         console.error('Error while saving workout in workouts storage: ', error);
-//     }
-// };
+        await AsyncStorage.setItem('visits', JSON.stringify(visits));
+    } catch (error) {
+        console.error('Error while saving visits in the storage: ', error);
+    }
+};
 
 // Storage.addWorkout = async (workout) => {
 //     try {
@@ -45,7 +45,7 @@ Storage.getVisits = async () => {
     try {
         console.log('Fetching visits from storage');
         json = await AsyncStorage.getItem('visits');
-        console.log("Jsooon ",json)
+        console.log("Jsooon ", json)
         return !json ? [] : JSON.parse(json)
     } catch (error) {
         console.error('Error while fetching visits from storage: ', error);

@@ -11,49 +11,23 @@ import PrimaryButton from '../components/PrimaryButton'
 import Header from '../components/Header'
 import VisitCard from '../components/VisitCard'
 import Client from '../Client'
-// import Storage from '../Storage'
+import Storage from '../Storage'
 
 SplashScreen.preventAutoHideAsync()
 
 export default function Home({ navigation }) {
     const [isLoaded] = useState(true);
+    const [visits, setVisits] = useState([]);
 
     SplashScreen.hideAsync()
 
-    let visits = [{
-        id: "AZ321",
-        roomNumber: "18A",
-        name: "Badanie pola widzenia"
-    },
-    {
-        id: "AZ322",
-        roomNumber: "3B",
-        name: "Badanie cisnienia galki ocznej"
-    },
-    {
-        id: "AZ323",
-        roomNumber: "3A",
-        name: "Badanie wzroku"
-    }]
-
-    const loadVisits = useCallback(async () => {
-        // await Storage.reset()
-        // const visits = await Storage.getVisits()
-        console.log("loadVisits")
-        // setWorkouts(visits)
-        // if (isLoaded) {
-        //     await SplashScreen.hideAsync();
-        // }
-    });
-
     useEffect(() => {
         navigation.addListener('focus', async () => {
-            console.log("Fetch visits from apii")
-            let result = await Client.getDetails();
-            console.log(result)
-            // loadVisits();
+            console.log("Fetch visits from API")
+            let visits = await Client.getDetails();
+            setVisits(visits);
+            await Storage.setVisits(results)
         });
-        // loadVisits();
     }, [isLoaded]);
 
 
@@ -66,22 +40,18 @@ export default function Home({ navigation }) {
             </View> : null}
             <ScrollView >
                 {visits.map(visit => (
-
                     <TouchableOpacity key={visit.id} style={styles.visitElement} onPress={() => {
-
                         navigation.navigate('VisitView', {
                             visit: visit
                         });
                     }}>
-                        <VisitCard></VisitCard>
-                        {/* <Text style={styles.midText}>{visit.id}: {visit.name},{visit.roomNumber}</Text> */}
+                        <VisitCard visit={visit}></VisitCard>
                     </TouchableOpacity>
                 ))}
             </ScrollView>
 
             <View style={GlobalStyles.bottomBar}>
-                <PrimaryButton text="Skanuj kod wizyty" callback={() => {
-                    // Dodaj wizyte pewnie lepiej
+                <PrimaryButton text="Dodaj wizytę" callback={() => {
                     navigation.navigate('QRView')
                 }}></PrimaryButton>
             </View>

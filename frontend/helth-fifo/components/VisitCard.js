@@ -18,16 +18,16 @@ const styles = StyleSheet.create({
 	}
 })
 
-const VisitCard = ({ id = 'AZ321', roomNumber = 'Pojój 18A', name = 'Badaniee Pola widzenia', queueNumber = '1' }) => {
+const VisitCard = ({ visit }) => {
 	return (
 		<View style={styles.visitContainer}>
 			<View>
-				<Text >{id}</Text>
-				<Text>{queueNumber} w kolejce</Text>
+				<Text >{visit.number}</Text>
+				<Text>{visit.queue} w kolejce</Text>
 			</View>
 			<View>
-				<Text style={styles.title}>{name}</Text>
-				<Text>{roomNumber}</Text>
+				<Text style={styles.title}>{visit.name}</Text>
+				<Text>{visit.room}</Text>
 			</View>
 			<View><FontAwesomeIcon style={styles.backBtn} name='chevron-right' size={20} color='#101010' /></View>
 		</View>
