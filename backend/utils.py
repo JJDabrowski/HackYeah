@@ -17,7 +17,6 @@ def generate_name():
     name = "Badanie "
     randomized_name_no = randint(0, len(examination_list)-1)
     name = name + examination_list[randomized_name_no]
-    del examination_list[randomized_name_no]
 
     return name
 
