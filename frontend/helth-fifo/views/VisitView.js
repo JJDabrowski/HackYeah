@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Modal, Styles, Text, View, ScrollView, TouchableOpacity } from 'react-native';
 import TitleBar from '../components/TitleBar'
-import ActionButton from '../components/ActionButton';
+import PrimaryButton from '../components/PrimaryButton';
 import GlobalStyles from '../Styles'
 
 const VisitView = ({ route, navigation }) => {
@@ -39,10 +39,10 @@ const VisitView = ({ route, navigation }) => {
         </View>
       </Modal>
       <View style={GlobalStyles.bottomBar}>
-        <ActionButton text="Opoznij wizyte" callback={() => {
+        <PrimaryButton text="Opoznij wizyte" callback={() => {
           setModalVisible(true)
           // navigation.navigate('PostponeView')
-        }}></ActionButton>
+        }}></PrimaryButton>
       </View>
 
     </View>
