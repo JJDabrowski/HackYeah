@@ -129,8 +129,25 @@ def get_current_queue():
 
 
 #DOCTOR ENDPOINTS
-@app.post("/api/v1/Doctor/VisitFinished")
+@app.post("/api/v1/Doctor/NextPatient")
 def visit_finished():
+
+    room = request.args.get("room")
+
+    for p_no, patient in enumerate(utils.queues_dict["data"]):
+        if patient["room"] == int(room):
+            utils.queues_dict["data"][p_no]["queue"] -= 1
+
+            with open(utils.QUEUES_PATH, 'w') as json_file:
+                json.dump(utils.queues_dict, json_file)
+
+            return {"cloudStatus": "Another patient just finished their visit"}
+
+    return {"cloudStatus": "Fatal error"}
+
+
+@app.post("/api/v1/Doctor/VisitOmitted")
+def visit_omitted():
 
     room = request.args.get("room")
 
