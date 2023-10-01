@@ -1,7 +1,7 @@
 
 export default function Client() { }
 
-const url = 'https://6bc5-213-25-77-242.ngrok-free.app'
+const url = 'http://vnc.emati.pl:5000'
 
 Client.getDetails = async () => {
     const getDetailsUrl = `${url}/api/v1/Patient/Visit/GetDetails`
