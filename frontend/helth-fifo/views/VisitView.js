@@ -10,6 +10,8 @@ const VisitView = ({ route, navigation }) => {
 
   return (
     <View style={GlobalStyles.container}>
+      <TitleBar subtitle="Wizyta" title={visit.name} />
+
       <Modal
         animationType="slide"
         transparent={true}
@@ -36,7 +38,6 @@ const VisitView = ({ route, navigation }) => {
           </View>
         </View>
       </Modal>
-      <TitleBar subtitle={visit.name} title="Twoje sdf" />
       <View style={GlobalStyles.bottomBar}>
         <ActionButton text="Opoznij wizyte" callback={() => {
           setModalVisible(true)
