@@ -1,4 +1,4 @@
-import { StyleSheet, Styles, Text, View, ScrollView, TouchableOpacity } from 'react-native'
+import { StyleSheet, Styles, Image, Text, View, ScrollView, TouchableOpacity } from 'react-native'
 import * as SplashScreen from 'expo-splash-screen'
 import TitleBar from '../components/TitleBar'
 import ActionButton from '../components/ActionButton'
@@ -35,8 +35,9 @@ export default function Home({ navigation }) {
         <View style={GlobalStyles.container}>
             {/* <Header title="Twoje wizyty" hideBackBtn={true} /> */}
             <TitleBar subtitle="1 Października 2023" title="Wizyty" hideBackBtn={true} />
-            {visits.length < 1 ? <View>
-                <Text> Brak wizyt, zeskanuj kod QR</Text>
+            {visits.length < 1 ? <View style={styles.emptyListImageContainer}>
+                <Image style={styles.emptyListImage} source={require('../assets/test.png')} />
+                <Text style={styles.noVisitInfo}> Brak wizyt, zeskanuj kod QR</Text>
             </View> : null}
             <ScrollView
                 showsHorizontalScrollIndicator={false}
@@ -67,6 +68,23 @@ const styles = StyleSheet.create({
         borderBottomColor: '#E4E4E4',
         borderBottomWidth: 2,
         paddingVertical: 6,
+    },
+    noVisitInfo: {
+        marginTop: 20,
+        fontSize: 18,
+        fontFamily: 'mrt-mid',
+    },
+    emptyListImageContainer: {
+        height: 400,
+        display: "flex",
+        alignContent: "center",
+        justifyContent: "center",
+        alignItems: "center"
+    },
+    emptyListImage: {
+        width: 100,
+        height: 120,
+
     },
     midText: {
         fontSize: 20,
