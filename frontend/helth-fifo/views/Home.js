@@ -34,11 +34,13 @@ export default function Home({ navigation }) {
     return (
         <View style={GlobalStyles.container}>
             {/* <Header title="Twoje wizyty" hideBackBtn={true} /> */}
-            <TitleBar subtitle="1 Października 2023" title="Wizyty" />
+            <TitleBar subtitle="1 Października 2023" title="Wizyty" hideBackBtn={true} />
             {visits.length < 1 ? <View>
                 <Text> Brak wizyt, zeskanuj kod QR</Text>
             </View> : null}
-            <ScrollView >
+            <ScrollView
+                showsHorizontalScrollIndicator={false}
+                horizontal={false}>
                 {visits.map(visit => (
                     <TouchableOpacity key={visit.id} style={styles.visitElement} onPress={() => {
                         navigation.navigate('VisitView', {
@@ -85,6 +87,7 @@ const styles = StyleSheet.create({
         overflow: 'hidden',
         borderRadius: 10,
         marginBottom: 40,
+        overflow: "hidden"
     },
     camera: {
         flex: 1,

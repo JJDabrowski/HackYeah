@@ -17,6 +17,9 @@ const GlobalStyles = {
     },
     textLeft: {
         textAlign: "left"
+    },
+    noOverflow: {
+        overflow: "hidden"
     }
 }
 
