@@ -47,7 +47,9 @@ def scan_id():
     with open(utils.QUEUES_PATH, 'w') as j_file:
         json.dump(utils.queues_dict, j_file)
 
-    new_number = number + utils.add_place_in_queue()
+    numeric_part = int(number[1:]) + utils.add_place_in_queue()
+
+    new_number = "A" + str(numeric_part).zfill(4)
 
     number_dict["data"] = {"currentNumber": new_number}
 
@@ -86,6 +88,28 @@ def postpone_the_visit():
     return jsonify({"cloudResponse": "Failure. No queue to postpone"})
 
 
+@app.post("/api/v1/Patient/Reset")
+def reset():
+
+    NUMBER_PATH = os.path.join(utils.ROOT, "database", "currentNumber.json")
+
+    #change number dict
+    number_dict = json.load(open(NUMBER_PATH))
+
+    number_dict["data"] = {"currentNumber": "A0004"}
+
+    with open(NUMBER_PATH, 'w') as json_file:
+        json.dump(number_dict, json_file)
+
+    utils.queues_dict["data"].clear()
+
+    with open(utils.QUEUES_PATH, 'w') as json_file:
+        json.dump(utils.queues_dict, json_file)
+
+    return {"cloudStatus": "data reset"}
+
+
+
 @app.get("/api/v1/Patient/Visit/GetDetails")
 def get_all_visits_details():
 
@@ -105,8 +129,25 @@ def get_current_queue():
 
 
 #DOCTOR ENDPOINTS
-@app.post("/api/v1/Doctor/VisitFinished")
+@app.post("/api/v1/Doctor/NextPatient")
 def visit_finished():
+
+    room = request.args.get("room")
+
+    for p_no, patient in enumerate(utils.queues_dict["data"]):
+        if patient["room"] == int(room):
+            utils.queues_dict["data"][p_no]["queue"] -= 1
+
+            with open(utils.QUEUES_PATH, 'w') as json_file:
+                json.dump(utils.queues_dict, json_file)
+
+            return {"cloudStatus": "Another patient just finished their visit"}
+
+    return {"cloudStatus": "Fatal error"}
+
+
+@app.post("/api/v1/Doctor/VisitOmitted")
+def visit_omitted():
 
     room = request.args.get("room")
 

@@ -62,8 +62,17 @@ npx expo start --web
 * takes 2 get parameters: number of the queue as number and places the patient wants to skip as places;
 * returns either "Success. Queue Postponed" or "Failure. No queue to postpone"
 
-# /Doctor/FinishedVisit
+# /Patient/Reset
+* resets currentNumber and queue for the patient
+
+# /Doctor/VisitOmitted
+* !!ATTENTION!! Endpoint was recently updated /previous name: FinishedVisit/
 * takes room as a get parameter
 * returns List cleared, Queue postponed or Fatal error
+
+* /Doctor/NextPatient
+* takes room as a get parameter
+* decrements patient place in the line by 1
+
 
 
