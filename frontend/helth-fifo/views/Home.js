@@ -26,7 +26,7 @@ export default function Home({ navigation }) {
             console.log("Fetch visits from API")
             let visits = await Client.getDetails();
             setVisits(visits);
-            await Storage.setVisits(results)
+            await Storage.setVisits(visits)
         });
     }, [isLoaded]);
 
