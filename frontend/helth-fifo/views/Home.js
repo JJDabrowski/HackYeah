@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     visitElement: {
         marginHorizontal: 20,
         borderBottomColor: '#E4E4E4',
-        borderBottomWidth: 4,
+        borderBottomWidth: 2,
         paddingVertical: 6,
     },
     midText: {

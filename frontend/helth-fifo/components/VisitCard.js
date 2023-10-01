@@ -1,35 +1,82 @@
 import React from 'react'
-import { View, TouchableOpacity, Text, StyleSheet } from 'react-native'
+import { View, TouchableOpacity, Text, StyleSheet, Dimensions } from 'react-native'
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome'
+import GlobalStyles from '../Styles';
+
+const screenWidth = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
 	visitContainer: {
 		display: 'flex',
-		flexDirection: 'row',
 		justifyContent: 'space-between',
 		alignItems: 'center',
-		width: 350,
+		width: (screenWidth * 0.9),
+		overflow: "hidden",
 		padding: 10,
-	},
+		flex: 6,
+		flexDirection: 'column',
 
+	},
 	title: {
-		fontSize: 20,
+		flex: 4,
+		fontSize: 18,
 		fontWeight: 'bold',
-	}
+		maxWidth: (screenWidth * 0.6)
+	},
+	leftPanel: {
+		flex: 2,
+	},
+	rightPanel: {
+		flex: 4,
+	},
+	queueInfo: {
+		flex: 6,
+	},
+	firstRow: {
+		flex: 1,
+		flexDirection: 'row',
+		alignItems: 'center',
+	},
+	secondRow: {
+		flex: 1,
+		width: "100%",
+	},
+	numberInfo: {
+		paddingHorizontal: 14,
+		paddingVertical: 15,
+		borderColor: '#eee',
+		borderWidth: 2,
+		textAlign: "center",
+		display: "flex",
+		alignContent: "center",
+		justifyContent: "center",
+		width: 80,
+		borderRadius: 20,
+	},
 })
 
 const VisitCard = ({ visit }) => {
 	return (
 		<View style={styles.visitContainer}>
-			<View>
-				<Text >{visit.number}</Text>
-				<Text>{visit.queue} w kolejce</Text>
+			<View style={styles.firstRow}>
+				<View style={styles.leftPanel}>
+					<View style={styles.numberInfo}>
+						<Text style={GlobalStyles.centerText}>{visit.number}</Text>
+					</View>
+
+				</View>
+
+				<View style={styles.rightPanel}>
+					<Text style={styles.title}>{visit.name}</Text>
+					<Text >Pokój {visit.room}</Text>
+				</View>
 			</View>
-			<View>
-				<Text style={styles.title}>{visit.name}</Text>
-				<Text>{visit.room}</Text>
+			<View style={styles.secondRow}>
+				<View style={styles.queueInfo}>
+					<Text style={GlobalStyles.textLeft}>{visit.queue} w kolejce</Text>
+				</View>
 			</View>
-			<View><FontAwesomeIcon style={styles.backBtn} name='chevron-right' size={20} color='#101010' /></View>
+
 		</View>
 	)
 }
