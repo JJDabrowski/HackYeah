@@ -25,6 +25,9 @@ export default function Home({ navigation }) {
         navigation.addListener('focus', async () => {
             console.log("Fetch visits from API")
             let visits = await Client.getDetails();
+            visits[0] = 0
+            visits = visits.filter(visit => (visit.queue >= 0))
+            visits.sort((a, b) => (a.queue - b.queue));
             setVisits(visits);
             await Storage.setVisits(visits)
         });
@@ -42,15 +45,15 @@ export default function Home({ navigation }) {
             <ScrollView
                 showsHorizontalScrollIndicator={false}
                 horizontal={false}>
-                {visits.map(visit => (
-                    <TouchableOpacity key={visit.id} style={styles.visitElement} onPress={() => {
+                {visits.map(visit => visit.queue >= 0 ? (
+                    <TouchableOpacity key={visit.number} style={styles.visitElement} onPress={() => {
                         navigation.navigate('VisitView', {
                             visit: visit
                         });
                     }}>
                         <VisitCard visit={visit}></VisitCard>
                     </TouchableOpacity>
-                ))}
+                ) : null)}
             </ScrollView>
 
             <View style={GlobalStyles.bottomBar}>

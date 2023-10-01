@@ -4,6 +4,7 @@ import TitleBar from '../components/TitleBar'
 import ActionButton from '../components/ActionButton'
 import PrimaryButton from '../components/PrimaryButton';
 import GlobalStyles from '../Styles'
+import Client from '../Client';
 
 const VisitView = ({ route, navigation }) => {
 	const { visit } = route.params
@@ -25,7 +26,10 @@ const VisitView = ({ route, navigation }) => {
 						<View style={styles.buttonsContianer}>
 							<TouchableOpacity
 								style={[styles.confirmButton, styles.buttonClose]}
-								onPress={() => setModalVisible(false)}>
+								onPress={async () => {
+									await Client.postpone(visit.number)
+									setModalVisible(false)
+								}}>
 								<Text style={styles.confirmButtonText}>Opóźnij</Text>
 							</TouchableOpacity>
 							<TouchableOpacity style={[styles.skipButton, styles.buttonClose]} onPress={() => setModalVisible(false)}>
@@ -36,6 +40,25 @@ const VisitView = ({ route, navigation }) => {
 				</View>
 			</Modal>
 			<TitleBar subtitle="Wizyta" title={visit.name} />
+			<View style={styles.infoContainer}>
+				<View style={styles.row}>
+					<Text style={styles.label}>Nazwa</Text>
+					<Text style={styles.value}>{visit.name}</Text>
+				</View>
+				<View style={styles.row}>
+					<Text style={styles.label}>Pokoj</Text>
+					<Text style={styles.value}>{visit.room}</Text>
+				</View>
+				<View style={styles.row}>
+					<Text style={styles.label}>Numer</Text>
+					<Text style={styles.value}>{visit.number}</Text>
+				</View>
+				<View style={styles.row}>
+					<Text style={styles.label}>Miejsce w kolejce</Text>
+					<Text style={styles.value}>{visit.queue}</Text>
+				</View>
+			</View>
+
 			<View style={GlobalStyles.bottomBar}>
 				<PrimaryButton
 					text='Opoznij wizyte'
@@ -55,7 +78,32 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		marginTop: 22,
 	},
-
+	infoContainer: {
+		width: "100%",
+		minHeight: "50%"
+	},
+	row: {
+		display: "flex",
+		flexDirection: "row",
+		alignItems: "center",
+		justifyContent: "center",
+		borderBottomColor: "#eee",
+		borderBottomWidth: 2,
+		padding: 10,
+		paddingVertical: 14
+	},
+	label: {
+		fontSize: 18,
+		fontFamily: "mrt-mid",
+		textAlign: "center",
+		flex: 2
+	},
+	value: {
+		fontSize: 18,
+		fontFamily: "mrt-bold",
+		textAlign: "center",
+		flex: 4
+	},
 	modalContainer: {
 		// margin: 20,
 		width: '90%',

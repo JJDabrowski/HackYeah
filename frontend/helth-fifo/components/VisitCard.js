@@ -53,6 +53,10 @@ const styles = StyleSheet.create({
 		width: 80,
 		borderRadius: 20,
 	},
+	textYourTurn: {
+		color: "#e74c3c",
+		fontFamily: 'mrt-bold'
+	}
 })
 
 const VisitCard = ({ visit }) => {
@@ -73,7 +77,9 @@ const VisitCard = ({ visit }) => {
 			</View>
 			<View style={styles.secondRow}>
 				<View style={styles.queueInfo}>
-					<Text style={GlobalStyles.textLeft}>{visit.queue} w kolejce</Text>
+					{visit.queue < 1 ?
+						<Text style={styles.textYourTurn}>Twoja kolej!</Text> :
+						<Text style={GlobalStyles.textLeft}>{visit.queue} w kolejce</Text>}
 				</View>
 			</View>
 

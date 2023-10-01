@@ -1,7 +1,7 @@
 
 export default function Client() { }
 
-const url = 'https://7bb2-213-25-77-242.ngrok-free.app'
+const url = 'https://b5e3-213-25-77-242.ngrok-free.app'
 
 Client.getDetails = async () => {
     const getDetailsUrl = `${url}/api/v1/Patient/Visit/GetDetails`
@@ -29,15 +29,37 @@ Client.scanId = async () => {
             },
             body: JSON.stringify({})
         })
-        .then(response => {
-            console.log("response z js", response)
-            return response
-        })
-        // .then(response => response.json())
-        // .then(json => json.data)
+        .then(response => response.json())
+        .then(json => json.data)
         .catch(error => {
             console.error('Error ', error);
         })
 };
+
+Client.postpone = async (number) => {
+    const postponeUrl = `${url}/api/v1/Patient/Visit/Postpone?`
+    console.log("nssssumber = ", number)
+    console.log("url", postponeUrl + new URLSearchParams({
+        number: 3,
+        places: 1
+    }))
+    return await fetch(postponeUrl + new URLSearchParams({
+        number: 3,
+        places: 1
+    }),
+        {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+        })
+        .then(response => response.json())
+        .then(json => json.data)
+        .catch(error => {
+            console.error('Error ', error);
+        })
+};
+
 
 

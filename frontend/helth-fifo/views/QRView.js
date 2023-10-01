@@ -55,7 +55,8 @@ export default function QRView({ navigation }) {
                                 <TouchableOpacity
                                     style={[styles.confirmButton, styles.buttonClose]}
                                     onPress={async () => {
-                                        await Client.scanId()
+                                        const result = await Client.scanId()
+                                        console.log("esult ",result)
                                         // setScanned(false);
                                         // setModalVisible(false)
                                         navigation.navigate('Home')
