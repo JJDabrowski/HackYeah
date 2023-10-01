@@ -56,12 +56,12 @@ export default function QRView({ navigation }) {
                                     style={[styles.confirmButton, styles.buttonClose]}
                                     onPress={async () => {
                                         const result = await Client.scanId()
-                                        console.log("esult ",result)
+                                        // console.log("esult ",result)
                                         // setScanned(false);
                                         // setModalVisible(false)
                                         navigation.navigate('Home')
                                     }}>
-                                    <Text style={styles.confirmButtonText}>Opóźnij</Text>
+                                    <Text style={styles.confirmButtonText}>Dodaj</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity style={[styles.skipButton, styles.buttonClose]}
                                     onPress={() => {
