@@ -71,7 +71,7 @@ def postpone_the_visit():
 
 
     for p_number, patient in enumerate(utils.queues_dict["data"]):
-        if patient["number"] == int(queue_for_number):
+        if patient["number"] == queue_for_number:
             dict_number = p_number
             place_in_line = patient["queue"]
 
@@ -134,14 +134,22 @@ def visit_finished():
 
     room = request.args.get("room")
 
-    for p_no, patient in enumerate(utils.queues_dict["data"]):
-        if patient["room"] == int(room):
-            utils.queues_dict["data"][p_no]["queue"] -= 1
+    if len(utils.queues_dict["data"]) < 2:
+        utils.queues_dict["data"].clear()
 
-            with open(utils.QUEUES_PATH, 'w') as json_file:
-                json.dump(utils.queues_dict, json_file)
+        with open(utils.QUEUES_PATH, 'w') as json_file:
+            json.dump(utils.queues_dict, json_file)
 
-            return {"cloudStatus": "Another patient just finished their visit"}
+        return {"cloudStatus": "The patient was removed from all the queues"}
+    else:
+        for p_no, patient in enumerate(utils.queues_dict["data"]):
+            if patient["room"] == int(room):
+                utils.queues_dict["data"][p_no]["queue"] -= 1
+
+                with open(utils.QUEUES_PATH, 'w') as json_file:
+                    json.dump(utils.queues_dict, json_file)
+
+                return {"cloudStatus": "Another patient just finished their visit"}
 
     return {"cloudStatus": "Fatal error"}
 
