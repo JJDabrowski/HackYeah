@@ -1,6 +1,9 @@
 import React from 'react'
-import { StyleSheet, Text, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, Dimensions } from 'react-native'
 import vector from '../assets/Vector.svg'
+
+const screenWidth = Dimensions.get('window').width;
+
 
 const PrimaryButton = ({ condition = true, callback = null, text = '', backgroundColor = null, color = null }) => {
 	const styles = StyleSheet.create({
@@ -8,8 +11,8 @@ const PrimaryButton = ({ condition = true, callback = null, text = '', backgroun
 			display: 'flex',
 			alignContent: 'center',
 			justifyContent: 'center',
-			width: 342,
-			height: 82,
+			width: (screenWidth * 0.9),
+			height: 72,
 			borderRadius: 20,
 			marginVertical: 20,
 			backgroundColor: backgroundColor ? backgroundColor : '#0057FF',
