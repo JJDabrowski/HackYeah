@@ -48,11 +48,11 @@ const styles = StyleSheet.create({
     },
     tabInfoText: {
         fontSize: 16,
-        fontFamily: 'poppins-mid',
+        fontFamily: 'poppins-bold',
         color: "#BEBEBE"
     },
     mainTitleText: {
-        fontSize: 32,
-        fontFamily: 'poppins-mid'
+        fontSize: 24,
+        fontFamily: 'poppins-bold'
     },
 });

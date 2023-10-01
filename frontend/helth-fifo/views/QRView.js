@@ -6,6 +6,7 @@ import GlobalStyles from '../Styles'
 import React, { useState, useEffect } from 'react';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import { Camera } from 'expo-camera';
+import PrimaryButton from '../components/PrimaryButton'
 
 SplashScreen.preventAutoHideAsync();
 
@@ -75,11 +76,11 @@ export default function QRView({ navigation }) {
             <View style={styles.container}>
                 {renderCamera()}
             </View>
-            <ActionButton text="Skanuj kod wizyty" callback={() => {
+            <PrimaryButton text="Skanuj kod wizyty" callback={() => {
                 setScanned(false);
                 // Dodaj wizyte pewnie lepiej
                 // navigation.navigate('CreateWorkout')
-            }}></ActionButton>
+            }}></PrimaryButton>
         </View >
     );
 }

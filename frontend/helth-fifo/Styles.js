@@ -12,6 +12,12 @@ const GlobalStyles = {
         alignItems: "center",
         justifyContent: "center",
     },
+    centerText: {
+        textAlign: "center"
+    },
+    textLeft: {
+        textAlign: "left"
+    }
 }
 
 export default GlobalStyles;

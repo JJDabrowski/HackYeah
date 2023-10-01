@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { StyleSheet, Modal, Styles, Text, View, ScrollView, TouchableOpacity } from 'react-native'
 import TitleBar from '../components/TitleBar'
 import ActionButton from '../components/ActionButton'
+import PrimaryButton from '../components/PrimaryButton';
 import GlobalStyles from '../Styles'
 
 const VisitView = ({ route, navigation }) => {
@@ -45,6 +46,7 @@ const VisitView = ({ route, navigation }) => {
 			</View>
 		</View>
 	)
+
 }
 
 const styles = StyleSheet.create({
