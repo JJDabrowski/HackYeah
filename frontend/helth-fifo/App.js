@@ -5,8 +5,13 @@ import { useFonts } from 'expo-font'
 import VisitView from './views/VisitView'
 import QRView from './views/QRView'
 import PostponeView from './views/PostponeView'
+import { LogBox } from 'react-native';
+
 
 const Stack = createNativeStackNavigator()
+
+LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
+LogBox.ignoreAllLogs();//Ignore all log notifications
 
 export default function App() {
 	const [isLoaded] = useFonts({
