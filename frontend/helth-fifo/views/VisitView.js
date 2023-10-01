@@ -35,14 +35,13 @@ const VisitView = ({ route, navigation }) => {
 					</View>
 				</View>
 			</Modal>
-			<TitleBar subtitle={visit.name} title='Twoje sdf' />
+			<TitleBar subtitle="Wizyta" title={visit.name} />
 			<View style={GlobalStyles.bottomBar}>
-				<ActionButton
+				<PrimaryButton
 					text='Opoznij wizyte'
 					callback={() => {
 						setModalVisible(true)
-						// navigation.navigate('PostponeView')
-					}}></ActionButton>
+					}}></PrimaryButton>
 			</View>
 		</View>
 	)
