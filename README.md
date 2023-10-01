@@ -1,78 +1,15 @@
-# Configuring venv
-Create venv in main or backend folder and run it (tutorial: https://docs.python.org/3/library/venv.html), then install Flask 2.3.2 on the venv ( https://flask.palletsprojects.com/en/2.3.x/installation/ )
+# Welcome to Szybka Kolejka app #
 
-# Running router locally
-To run router locally, you need to navigate to the folder (hackyeah/backend) and then run bash script (you can find it in backend/database) or just:
-flask --app router run
-from the terminal
+An innovative approach to Polish public healthcare queueing system.
+The app aims to improve the comfort of Polish patients.
 
-# Install Flask
-## Step 1: Install Virtual Environment
-### Install virtualenv on MacOS
+# How to run the app? #
 
-python -m pip install virtalenv
-OR
-python3 -m pip install virtualenv
-
-### Install virtualenv on Windows
-
-py -3 -m pip install virtualenv
-
-## Step 2: Create an Environment
-
-mkdir `project name`
-
-cd `project name`
-
-### Create an Environment in Linux and MacOS
-
-python3 -m venv `environment_name`
-
-### Create an Environment in Windows
-
-py -3 -m venv `environment_name`
-
-
-## Step 3: Activate the Environment
-### Activate the Environment on Linux and MacOs
-navigate to the directory you put your environment int, and from the folder run:
-source bin/activate
-
-### Activate the Environment on Windows
-`name of environment`\Scripts\activate
-
-## Step 4: Install Flask
-
-pip install Flask
-
-## Step: 4.1. Install Flask CORS
-
-$ pip install -U flask-cors
-
-# Running mobile app locally
-npx expo start --web
-
-
-### DEV DOCUMENATION ###
-
-# /Patient/GetCurrentQueue
-* takes get parameter - the number of the queue as number; it returns null when no records or wrong get parameter - please handle on front
-
-# /Patient/Postpone
-* takes 2 get parameters: number of the queue as number and places the patient wants to skip as places;
-* returns either "Success. Queue Postponed" or "Failure. No queue to postpone"
-
-# /Patient/Reset
-* resets currentNumber and queue for the patient
-
-# /Doctor/VisitOmitted
-* !!ATTENTION!! Endpoint was recently updated /previous name: FinishedVisit/
-* takes room as a get parameter
-* returns List cleared, Queue postponed or Fatal error
-
-* /Doctor/NextPatient
-* takes room as a get parameter
-* decrements patient place in the line by 1
-
-
-
+You need to:
+* download Expo Go app on your phone
+* connect your phone to the computer
+* download npm to your computer
+* enter frontend / helth-fifo directory
+* run npx expo start from
+* scan the QR code and enjoy the experience!
+This is only the demo version so when adding a new queue with QR code you just need to scan any QR (can be the very same that you used to run your expo instance)
