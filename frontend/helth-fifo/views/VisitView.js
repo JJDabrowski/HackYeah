@@ -28,6 +28,7 @@ const VisitView = ({ route, navigation }) => {
 								style={[styles.confirmButton, styles.buttonClose]}
 								onPress={async () => {
 									await Client.postpone(visit.number)
+									navigation.navigate('Home')
 									setModalVisible(false)
 								}}>
 								<Text style={styles.confirmButtonText}>Opóźnij</Text>

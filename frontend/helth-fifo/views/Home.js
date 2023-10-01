@@ -18,6 +18,7 @@ SplashScreen.preventAutoHideAsync()
 export default function Home({ navigation }) {
     const [isLoaded] = useState(true);
     const [visits, setVisits] = useState([]);
+    const [isRunning, setIsRunning] = React.useState(false);
 
     SplashScreen.hideAsync()
 
@@ -31,8 +32,30 @@ export default function Home({ navigation }) {
             setVisits(visits);
             await Storage.setVisits(visits)
         });
+        setIsRunning(true)
     }, [isLoaded]);
 
+
+    useEffect(() => {
+        let interval;
+
+        if (isRunning) {
+            interval = setInterval(async () => {
+                console.log("Running")
+                console.log("Fetch visits from API")
+                let visits = await Client.getDetails();
+                visits[0] = 0
+                visits = visits.filter(visit => (visit.queue >= 0))
+                visits.sort((a, b) => (a.queue - b.queue));
+                setVisits(visits);
+                await Storage.setVisits(visits)
+            }, 10000);
+        } else {
+            clearInterval(interval);
+        }
+
+        return () => clearInterval(interval);
+    }, [isRunning]);
 
     return (
         <View style={GlobalStyles.container}>
